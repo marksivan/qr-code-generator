@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="QRing — paste a link, optionally name it, and download a QR code."
+    />
+    <title>QRing — QR Code Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <main class="shell">
+      <header class="brand">
+        <p class="brand__mark">QRing</p>
+        <h1 class="brand__line">Turn any link into a QR code.</h1>
+        <p class="brand__support">
+          Paste a URL, add an optional name for the top of the code, then download.
+        </p>
+      </header>
+
+      <form class="composer" id="qr-form" novalidate>
+        <label class="field">
+          <span class="field__label">Link</span>
+          <input
+            id="link-input"
+            name="link"
+            type="url"
+            inputmode="url"
+            autocomplete="url"
+            placeholder="https://example.com"
+            required
+          />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Name <em>(optional)</em></span>
+          <input
+            id="name-input"
+            name="name"
+            type="text"
+            maxlength="60"
+            autocomplete="off"
+            placeholder="Appears above the QR code"
+          />
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="btn btn--primary" id="generate-btn">
+            Generate QR
+          </button>
+          <button type="button" class="btn btn--ghost" id="download-btn" disabled>
+            Download PNG
+          </button>
+        </div>
+      </form>
+
+      <section class="preview" aria-live="polite">
+        <p class="preview__hint" id="preview-hint">Your QR code will show up here.</p>
+        <div class="preview__frame is-empty" id="preview-frame">
+          <canvas id="qr-canvas" width="320" height="320" hidden></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
