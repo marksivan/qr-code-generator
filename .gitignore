@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 *.png
+!favicon.png
 .venv/
 venv/
 .env
+.DS_Store
