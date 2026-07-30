@@ -1,9 +1,33 @@
-*QR Code Generator*
+# QR Code Generator
 
-A simple Python script to generate QR codes from text input.
+Generate a QR code from a link, with an optional name printed at the top of the image.
 
-*Features:*
+## Setup
 
-- Generates QR codes with customizable error correction and box size
-- Saves QR codes as PNG images
-- Easy to use and modify
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+Interactive mode (prompts for link, optional name, and output file):
+
+```bash
+python qr_generator.py
+```
+
+Command-line mode:
+
+```bash
+python qr_generator.py "https://example.com" --name "My Site" -o mysite.png
+```
+
+### Options
+
+| Flag | Description |
+|------|-------------|
+| `link` | URL or text to encode (required in CLI mode) |
+| `-n`, `--name` | Name shown centered above the QR code |
+| `-o`, `--output` | Output image path (default: `qring.png`) |
+
+If the link has no scheme (`http://` / `https://`), `https://` is added automatically so phones open it as a URL.
