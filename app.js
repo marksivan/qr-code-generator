@@ -70,6 +70,10 @@
   }
 
   async function renderQr(link, name) {
+    if (typeof QRCode === "undefined" || typeof QRCode.toCanvas !== "function") {
+      throw new Error("QR library failed to load. Refresh the page and try again.");
+    }
+
     const temp = document.createElement("canvas");
     await QRCode.toCanvas(temp, link, {
       width: 320,
@@ -125,7 +129,10 @@
       await renderQr(link, name);
     } catch (error) {
       console.error(error);
-      previewHint.textContent = "Could not generate that QR code. Try a shorter link.";
+      previewHint.textContent =
+        error instanceof Error && error.message
+          ? error.message
+          : "Could not generate that QR code. Please try again.";
       downloadBtn.disabled = true;
     }
   });

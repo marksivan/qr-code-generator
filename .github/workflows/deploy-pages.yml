@@ -26,8 +26,9 @@ jobs:
 
       - name: Prepare site
         run: |
-          mkdir _site
+          mkdir -p _site/vendor
           cp index.html styles.css app.js _site/
+          cp vendor/qrcode.min.js _site/vendor/
           cp README.md _site/ 2>/dev/null || true
 
       - name: Setup Pages
